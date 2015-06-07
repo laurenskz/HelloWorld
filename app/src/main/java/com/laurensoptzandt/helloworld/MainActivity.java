@@ -37,6 +37,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+    public void itemButtons(View view){
+        Button button = (Button) view;
+        button.setVisibility(View.GONE);
+        text.setText(button.getText());
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,7 +92,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void appendIt(View view){
-        new DownloadWebPageTask().execute(new String[]{"http://api.rsbuddy.com/grandExchange?a=guidePrice&i=440"});
+        new DownloadWebPageTask(new ResultReturner() {
+            @Override
+            public void getResult(String result) {
+
+            }
+        }).execute(new String[]{"http://api.rsbuddy.com/grandExchange?a=guidePrice&i=440"});
     }
 
     @Override
